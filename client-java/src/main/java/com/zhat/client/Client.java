@@ -93,7 +93,7 @@ public class Client implements Runnable {
 				// Iterate over the set of keys for which events are available
 				Iterator<SelectionKey> selectedKeys = this.selector.selectedKeys().iterator();
 				while (selectedKeys.hasNext()) {
-					SelectionKey key = (SelectionKey) selectedKeys.next();
+					SelectionKey key = selectedKeys.next();
 					selectedKeys.remove();
 
 					if (!key.isValid()) {

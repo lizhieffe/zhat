@@ -199,14 +199,4 @@ public class Server implements Runnable {
 
 		return socketSelector;
 	}
-
-	public static void main(String[] args) {
-		try {
-			EchoWorker worker = new EchoWorker();
-			new Thread(worker).start();
-			new Thread(new Server(null, 9090, worker)).start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

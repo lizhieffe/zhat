@@ -9,7 +9,7 @@ public class EchoWorker implements Runnable {
 	
 	public void processData(Server server, SocketChannel socket, byte[] data, int count) {
 		byte[] dataCopy = new byte[count];
-		System.arraycopy(data, 0, dataCopy, 0, data.length);
+		System.arraycopy(data, 0, dataCopy, 0, count);
 		synchronized(queue) {
 			queue.add(new ServerDataEvent(server, socket, dataCopy));
 			queue.notify();
