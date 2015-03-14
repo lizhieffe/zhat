@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>zhat.server</groupId>
-    <artifactId>zhat-server</artifactId>
+    <groupId>com.zhat</groupId>
+    <artifactId>com-zhat-server</artifactId>
     <version>0.1.0</version>
 
     <build>
@@ -41,6 +41,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.zhat</groupId>
+            <artifactId>com-zhat-common</artifactId>
+            <version>0.1.0</version>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
