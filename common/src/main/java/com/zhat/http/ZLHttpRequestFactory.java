@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import com.zhat.utils.StringUtils;
 
 public class ZLHttpRequestFactory {
+
 	public static ZLHttpRequest createHttpRequestByParsingInput(byte[] content) 
 			throws IOException, ZLHttpRequestMethodException, ZLHttpRequestContentTypeException {
 		boolean finishedReadingHeader = false;
@@ -27,6 +28,13 @@ public class ZLHttpRequestFactory {
 					request.setJsonData(new JSONObject(builder.toString()));
 				break;
 			}
+			/*
+			 * The data part starts
+			 */
+			if (lines[i].length() == 0) {
+				finishedReadingHeader = true;
+				continue;
+			}
 			
 			/*
 			 * Read the first line of request
@@ -40,7 +48,7 @@ public class ZLHttpRequestFactory {
 			 * Read the headers part
 			 */
 			else {
-				String[] parts = lines[i].split(":");
+				String[] parts = lines[i].split(":", 2);
 				if (parts[0].trim().equalsIgnoreCase("Content-Type"))
 					request.setHttpRequestContentType(ZLHttpRequestContentType.parseContentTypeFromString(parts[1].trim()));
 				else

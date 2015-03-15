@@ -1,7 +1,9 @@
 package com.zhat.http;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.json.JSONObject;
 
@@ -51,7 +53,25 @@ public class ZLHttpRequest {
 	public JSONObject getJsonData() {
 		return jsonData;
 	}
+	
 	public void setJsonData(JSONObject jsonData) {
 		this.jsonData = jsonData;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Method = " + this.method + "\n");
+		builder.append("URI = " + this.URI + "\n");
+		builder.append("\n------------------ Headers ------------------\n");
+		builder.append("Content-Type = " + this.contentType + "\n");
+		Iterator<Entry<String, String>> it = headers.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<String, String> entry = it.next();
+			builder.append(entry.getKey() + " = " + entry.getValue() + "\n");
+		}
+		builder.append("\n------------------ Body ------------------\n");
+		if (this.contentType == ZLHttpRequestContentType.APPLICATION_JSON)
+			builder.append(this.jsonData);
+		return builder.toString();
 	}
 }

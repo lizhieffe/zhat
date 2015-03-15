@@ -21,6 +21,8 @@ public class StringUtils {
             lines.add(temp);
         
         is.close();
-        return (String[])lines.toArray();
+        
+        String[] result = new String[lines.size()];
+        return lines.toArray(result);
 	}
 }

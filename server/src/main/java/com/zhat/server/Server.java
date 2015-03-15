@@ -179,6 +179,9 @@ public class Server implements Runnable {
 				// in writing on this socket. Switch back to waiting for
 				// data.
 				key.interestOps(SelectionKey.OP_READ);
+				
+				
+				key.channel().close();
 			}
 		}
 	}
