@@ -46,17 +46,17 @@ public class Server implements Runnable {
 		this.worker = worker;
 	}
 
-	public void send(SocketChannel socket, byte[] data) {
+	public void send(SocketChannel socketChannel, byte[] data) {
 		synchronized (this.pendingChanges) {
 			// Indicate we want the interest ops set changed
-			this.pendingChanges.add(new ChangeRequest(socket, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
+			this.pendingChanges.add(new ChangeRequest(socketChannel, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
 
 			// And queue the data we want written
 			synchronized (this.pendingData) {
-				List<ByteBuffer> queue = this.pendingData.get(socket);
+				List<ByteBuffer> queue = this.pendingData.get(socketChannel);
 				if (queue == null) {
 					queue = new ArrayList<ByteBuffer>();
-					this.pendingData.put(socket, queue);
+					this.pendingData.put(socketChannel, queue);
 				}
 				queue.add(ByteBuffer.wrap(data));
 			}
@@ -67,6 +67,8 @@ public class Server implements Runnable {
 	}
 
 	public void run() {
+		System.out.println("Server is running!");
+		
 		while (true) {
 			try {
 				// Process any pending changes
