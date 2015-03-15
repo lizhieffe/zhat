@@ -1,7 +1,6 @@
 package com.zhat.utils;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -26,22 +25,17 @@ public class AppProperties {
 	
 	private void init() {
 		String fileName = "application.properties";
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(fileName).getFile());
-		Scanner scanner = null;
-		try {
-			scanner = new Scanner(file);
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				String[] parts = line.split("=");
-				if (parts.length != 2)
-					continue;
-				map.put(parts[0].replace(" ", ""), parts[1].replace(" ", ""));
-			}
-			scanner.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream in = classLoader.getResourceAsStream(fileName);
+		Scanner scanner = new Scanner(in);
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			String[] parts = line.split("=");
+			if (parts.length != 2)
+				continue;
+			map.put(parts[0].replace(" ", ""), parts[1].replace(" ", ""));
 		}
+		scanner.close();
 	}
 	
 	public static String get(String key) {
