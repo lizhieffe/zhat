@@ -2,3 +2,27 @@
 *.class
 
 target/
+
+Pods/
+
+*.lock
+
+*.xcworkspacedata
+
+*.xcworkspacedata
+
+*.xccheckout
+
+*.xcuserstate
+
+*.xcuserstate
+
+client-iOS/Zhat/Zhat.xcodeproj/project.xcworkspace/xcuserdata/zhili.xcuserdatad/UserInterfaceState.xcuserstate
+
+client-iOS/Zhat/Zhat.xcodeproj/xcuserdata/zhili.xcuserdatad/xcschemes/xcschememanagement.plist
+
+client-iOS/Zhat/Zhat.xcodeproj/xcuserdata/zhili.xcuserdatad/xcschemes/Zhat.xcscheme
+
+*.xcworkspacedata
+
+*.xcscheme
