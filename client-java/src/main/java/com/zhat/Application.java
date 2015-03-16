@@ -23,8 +23,8 @@ public class Application {
 			t.setDaemon(true);
 			t.start();
 			RspHandler handler = new RspHandler();
-			client.send("GET / HTTP/1.0\r\n\r\n".getBytes(), handler);
-			handler.waitForResponse();
+//			client.send("GET / HTTP/1.0\r\n\r\n".getBytes(), handler);
+//			handler.waitForResponse();
 			
 			while (true) {
 				String line = scanner.nextLine();

@@ -33,7 +33,7 @@ public class AppProperties {
 			String[] parts = line.split("=");
 			if (parts.length != 2)
 				continue;
-			map.put(parts[0].replace(" ", ""), parts[1].replace(" ", ""));
+			map.put(parts[0].trim(), parts[1].trim());
 		}
 		scanner.close();
 	}
