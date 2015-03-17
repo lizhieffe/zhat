@@ -19,6 +19,19 @@
 
 @implementation MainViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+
+    [self initTabControllers];
+    [self initTabImages];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)initTabControllers {
     self.friendsListController = [[FriendsListViewController alloc] init];
     self.chatsListController = [[ChatsListViewController alloc] init];
@@ -34,28 +47,5 @@
     self.friendsListController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Friends" image:friendsListImage tag:0];
     self.chatsListController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Chats" image:chatsListImage tag:1];
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-
-    [self initTabControllers];
-    [self initTabImages];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

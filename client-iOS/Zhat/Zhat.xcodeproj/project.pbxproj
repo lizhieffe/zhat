@@ -10,11 +10,14 @@
 		6480D2A18D9946DE40515788 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C93601EA12F7E161EC888A4F /* libPods.a */; };
 		DC060A8C1AB6966B00CB19EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC060A8B1AB6966B00CB19EB /* main.m */; };
 		DC060A8F1AB6966B00CB19EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC060A8E1AB6966B00CB19EB /* AppDelegate.m */; };
-		DC060A921AB6966B00CB19EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC060A911AB6966B00CB19EB /* ViewController.m */; };
-		DC060A951AB6966B00CB19EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC060A931AB6966B00CB19EB /* Main.storyboard */; };
 		DC060A971AB6966B00CB19EB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC060A961AB6966B00CB19EB /* Images.xcassets */; };
 		DC060A9A1AB6966B00CB19EB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC060A981AB6966B00CB19EB /* LaunchScreen.xib */; };
 		DC060AA61AB6966B00CB19EB /* ZhatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC060AA51AB6966B00CB19EB /* ZhatTests.m */; };
+		DC9C4AF21AB7D0E5009CAD73 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9C4AF11AB7D0E5009CAD73 /* Friend.m */; };
+		DC9C4AF61AB7D1C2009CAD73 /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9C4AF51AB7D1C2009CAD73 /* Email.m */; };
+		DC9C4AF91AB7D368009CAD73 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9C4AF81AB7D368009CAD73 /* StringUtil.m */; };
+		DC9C4AFC1AB7DC4D009CAD73 /* ZhatService.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9C4AFB1AB7DC4D009CAD73 /* ZhatService.m */; };
+		DC9C4AFF1AB7DCF0009CAD73 /* ZhatConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9C4AFE1AB7DCF0009CAD73 /* ZhatConstant.m */; };
 		DCCEBAEF1AB7084700C806B2 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCEBAED1AB7084700C806B2 /* WelcomeViewController.m */; };
 		DCCEBAF01AB7084700C806B2 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBAEE1AB7084700C806B2 /* WelcomeViewController.xib */; };
 		DCCEBAF21AB708B700C806B2 /* loginViewBackground_744x1392.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBAF11AB708B700C806B2 /* loginViewBackground_744x1392.png */; };
@@ -49,14 +52,21 @@
 		DC060A8B1AB6966B00CB19EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC060A8D1AB6966B00CB19EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC060A8E1AB6966B00CB19EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DC060A901AB6966B00CB19EB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DC060A911AB6966B00CB19EB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		DC060A941AB6966B00CB19EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC060A961AB6966B00CB19EB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC060A991AB6966B00CB19EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DC060A9F1AB6966B00CB19EB /* ZhatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZhatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC060AA41AB6966B00CB19EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC060AA51AB6966B00CB19EB /* ZhatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhatTests.m; sourceTree = "<group>"; };
+		DC9C4AF11AB7D0E5009CAD73 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		DC9C4AF31AB7D0F5009CAD73 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		DC9C4AF41AB7D1C2009CAD73 /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
+		DC9C4AF51AB7D1C2009CAD73 /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
+		DC9C4AF71AB7D368009CAD73 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
+		DC9C4AF81AB7D368009CAD73 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
+		DC9C4AFA1AB7DC4D009CAD73 /* ZhatService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhatService.h; sourceTree = "<group>"; };
+		DC9C4AFB1AB7DC4D009CAD73 /* ZhatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhatService.m; sourceTree = "<group>"; };
+		DC9C4AFD1AB7DCF0009CAD73 /* ZhatConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhatConstant.h; sourceTree = "<group>"; };
+		DC9C4AFE1AB7DCF0009CAD73 /* ZhatConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhatConstant.m; sourceTree = "<group>"; };
 		DCCEBAEC1AB7084700C806B2 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		DCCEBAED1AB7084700C806B2 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		DCCEBAEE1AB7084700C806B2 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
@@ -142,9 +152,8 @@
 				DCCEBAE01AB705E100C806B2 /* Class */,
 				DC060A8D1AB6966B00CB19EB /* AppDelegate.h */,
 				DC060A8E1AB6966B00CB19EB /* AppDelegate.m */,
-				DC060A901AB6966B00CB19EB /* ViewController.h */,
-				DC060A911AB6966B00CB19EB /* ViewController.m */,
-				DC060A931AB6966B00CB19EB /* Main.storyboard */,
+				DC9C4AFD1AB7DCF0009CAD73 /* ZhatConstant.h */,
+				DC9C4AFE1AB7DCF0009CAD73 /* ZhatConstant.m */,
 				DC060A961AB6966B00CB19EB /* Images.xcassets */,
 				DC060A981AB6966B00CB19EB /* LaunchScreen.xib */,
 				DC060A891AB6966B00CB19EB /* Supporting Files */,
@@ -233,6 +242,10 @@
 		DCCEBAE51AB7063C00C806B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DC9C4AF31AB7D0F5009CAD73 /* Friend.h */,
+				DC9C4AF11AB7D0E5009CAD73 /* Friend.m */,
+				DC9C4AF41AB7D1C2009CAD73 /* Email.h */,
+				DC9C4AF51AB7D1C2009CAD73 /* Email.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -247,6 +260,8 @@
 		DCCEBAE71AB7065400C806B2 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DC9C4AF71AB7D368009CAD73 /* StringUtil.h */,
+				DC9C4AF81AB7D368009CAD73 /* StringUtil.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -254,6 +269,8 @@
 		DCCEBAE81AB7066100C806B2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				DC9C4AFA1AB7DC4D009CAD73 /* ZhatService.h */,
+				DC9C4AFB1AB7DC4D009CAD73 /* ZhatService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -373,7 +390,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC060A951AB6966B00CB19EB /* Main.storyboard in Resources */,
 				DCCEBAF01AB7084700C806B2 /* WelcomeViewController.xib in Resources */,
 				DCCEBB011AB7B36A00C806B2 /* ChatsListViewController.xib in Resources */,
 				DCCEBAF21AB708B700C806B2 /* loginViewBackground_744x1392.png in Resources */,
@@ -435,11 +451,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC060A921AB6966B00CB19EB /* ViewController.m in Sources */,
+				DC9C4AFF1AB7DCF0009CAD73 /* ZhatConstant.m in Sources */,
 				DCCEBAEF1AB7084700C806B2 /* WelcomeViewController.m in Sources */,
 				DCCEBB001AB7B36A00C806B2 /* ChatsListViewController.m in Sources */,
+				DC9C4AF91AB7D368009CAD73 /* StringUtil.m in Sources */,
+				DC9C4AF21AB7D0E5009CAD73 /* Friend.m in Sources */,
 				DCCEBB0C1AB7B5BB00C806B2 /* MainViewController.m in Sources */,
+				DC9C4AFC1AB7DC4D009CAD73 /* ZhatService.m in Sources */,
 				DCCEBAFB1AB7B31E00C806B2 /* FriendsListViewController.m in Sources */,
+				DC9C4AF61AB7D1C2009CAD73 /* Email.m in Sources */,
 				DC060A8F1AB6966B00CB19EB /* AppDelegate.m in Sources */,
 				DC060A8C1AB6966B00CB19EB /* main.m in Sources */,
 				DCCEBB061AB7B3A800C806B2 /* ChatDetailViewController.m in Sources */,
@@ -465,14 +485,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DC060A931AB6966B00CB19EB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DC060A941AB6966B00CB19EB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DC060A981AB6966B00CB19EB /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
