@@ -18,6 +18,17 @@
 		DCCEBAEF1AB7084700C806B2 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCEBAED1AB7084700C806B2 /* WelcomeViewController.m */; };
 		DCCEBAF01AB7084700C806B2 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBAEE1AB7084700C806B2 /* WelcomeViewController.xib */; };
 		DCCEBAF21AB708B700C806B2 /* loginViewBackground_744x1392.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBAF11AB708B700C806B2 /* loginViewBackground_744x1392.png */; };
+		DCCEBAFB1AB7B31E00C806B2 /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCEBAF91AB7B31E00C806B2 /* FriendsListViewController.m */; };
+		DCCEBAFC1AB7B31E00C806B2 /* FriendsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBAFA1AB7B31E00C806B2 /* FriendsListViewController.xib */; };
+		DCCEBB001AB7B36A00C806B2 /* ChatsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCEBAFE1AB7B36A00C806B2 /* ChatsListViewController.m */; };
+		DCCEBB011AB7B36A00C806B2 /* ChatsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBAFF1AB7B36A00C806B2 /* ChatsListViewController.xib */; };
+		DCCEBB061AB7B3A800C806B2 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCEBB041AB7B3A800C806B2 /* ChatDetailViewController.m */; };
+		DCCEBB071AB7B3A800C806B2 /* ChatDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBB051AB7B3A800C806B2 /* ChatDetailViewController.xib */; };
+		DCCEBB0C1AB7B5BB00C806B2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCEBB0A1AB7B5BB00C806B2 /* MainViewController.m */; };
+		DCCEBB0D1AB7B5BB00C806B2 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBB0B1AB7B5BB00C806B2 /* MainViewController.xib */; };
+		DCCEBB391AB7CB3A00C806B2 /* star-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBB251AB7CB3A00C806B2 /* star-Small.png */; };
+		DCCEBB5F1AB7CDEA00C806B2 /* friends-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBB4B1AB7CDEA00C806B2 /* friends-Small.png */; };
+		DCCEBB6C1AB7CE9900C806B2 /* chat-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DCCEBB6B1AB7CE9900C806B2 /* chat-Small.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +61,21 @@
 		DCCEBAED1AB7084700C806B2 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		DCCEBAEE1AB7084700C806B2 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		DCCEBAF11AB708B700C806B2 /* loginViewBackground_744x1392.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginViewBackground_744x1392.png; sourceTree = "<group>"; };
+		DCCEBAF81AB7B31E00C806B2 /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
+		DCCEBAF91AB7B31E00C806B2 /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
+		DCCEBAFA1AB7B31E00C806B2 /* FriendsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsListViewController.xib; sourceTree = "<group>"; };
+		DCCEBAFD1AB7B36A00C806B2 /* ChatsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsListViewController.h; sourceTree = "<group>"; };
+		DCCEBAFE1AB7B36A00C806B2 /* ChatsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsListViewController.m; sourceTree = "<group>"; };
+		DCCEBAFF1AB7B36A00C806B2 /* ChatsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatsListViewController.xib; sourceTree = "<group>"; };
+		DCCEBB031AB7B3A800C806B2 /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
+		DCCEBB041AB7B3A800C806B2 /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
+		DCCEBB051AB7B3A800C806B2 /* ChatDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailViewController.xib; sourceTree = "<group>"; };
+		DCCEBB091AB7B5BB00C806B2 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		DCCEBB0A1AB7B5BB00C806B2 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		DCCEBB0B1AB7B5BB00C806B2 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		DCCEBB251AB7CB3A00C806B2 /* star-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-Small.png"; path = "Resources/star-Small.png"; sourceTree = "<group>"; };
+		DCCEBB4B1AB7CDEA00C806B2 /* friends-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "friends-Small.png"; path = "Resources/friends-Small.png"; sourceTree = "<group>"; };
+		DCCEBB6B1AB7CE9900C806B2 /* chat-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chat-Small.png"; path = "Resources/chat-Small.png"; sourceTree = "<group>"; };
 		F5600D0EF08E42B61AFA3EFF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +195,9 @@
 		DCCEBAE11AB705EC00C806B2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				DCCEBB6B1AB7CE9900C806B2 /* chat-Small.png */,
+				DCCEBB4B1AB7CDEA00C806B2 /* friends-Small.png */,
+				DCCEBB251AB7CB3A00C806B2 /* star-Small.png */,
 				DCCEBAF11AB708B700C806B2 /* loginViewBackground_744x1392.png */,
 			);
 			name = Resource;
@@ -191,6 +220,9 @@
 		DCCEBAE41AB7063300C806B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DCCEBB161AB7C64C00C806B2 /* Main */,
+				DCCEBB081AB7B58500C806B2 /* Friends */,
+				DCCEBB021AB7B39000C806B2 /* Chats */,
 				DCCEBAEC1AB7084700C806B2 /* WelcomeViewController.h */,
 				DCCEBAED1AB7084700C806B2 /* WelcomeViewController.m */,
 				DCCEBAEE1AB7084700C806B2 /* WelcomeViewController.xib */,
@@ -224,6 +256,39 @@
 			children = (
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		DCCEBB021AB7B39000C806B2 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				DCCEBAFD1AB7B36A00C806B2 /* ChatsListViewController.h */,
+				DCCEBAFE1AB7B36A00C806B2 /* ChatsListViewController.m */,
+				DCCEBAFF1AB7B36A00C806B2 /* ChatsListViewController.xib */,
+				DCCEBB031AB7B3A800C806B2 /* ChatDetailViewController.h */,
+				DCCEBB041AB7B3A800C806B2 /* ChatDetailViewController.m */,
+				DCCEBB051AB7B3A800C806B2 /* ChatDetailViewController.xib */,
+			);
+			name = Chats;
+			sourceTree = "<group>";
+		};
+		DCCEBB081AB7B58500C806B2 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				DCCEBAF81AB7B31E00C806B2 /* FriendsListViewController.h */,
+				DCCEBAF91AB7B31E00C806B2 /* FriendsListViewController.m */,
+				DCCEBAFA1AB7B31E00C806B2 /* FriendsListViewController.xib */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		DCCEBB161AB7C64C00C806B2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DCCEBB091AB7B5BB00C806B2 /* MainViewController.h */,
+				DCCEBB0A1AB7B5BB00C806B2 /* MainViewController.m */,
+				DCCEBB0B1AB7B5BB00C806B2 /* MainViewController.xib */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,9 +375,16 @@
 			files = (
 				DC060A951AB6966B00CB19EB /* Main.storyboard in Resources */,
 				DCCEBAF01AB7084700C806B2 /* WelcomeViewController.xib in Resources */,
+				DCCEBB011AB7B36A00C806B2 /* ChatsListViewController.xib in Resources */,
 				DCCEBAF21AB708B700C806B2 /* loginViewBackground_744x1392.png in Resources */,
+				DCCEBB0D1AB7B5BB00C806B2 /* MainViewController.xib in Resources */,
+				DCCEBB391AB7CB3A00C806B2 /* star-Small.png in Resources */,
 				DC060A9A1AB6966B00CB19EB /* LaunchScreen.xib in Resources */,
+				DCCEBB6C1AB7CE9900C806B2 /* chat-Small.png in Resources */,
+				DCCEBB5F1AB7CDEA00C806B2 /* friends-Small.png in Resources */,
+				DCCEBAFC1AB7B31E00C806B2 /* FriendsListViewController.xib in Resources */,
 				DC060A971AB6966B00CB19EB /* Images.xcassets in Resources */,
+				DCCEBB071AB7B3A800C806B2 /* ChatDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +437,12 @@
 			files = (
 				DC060A921AB6966B00CB19EB /* ViewController.m in Sources */,
 				DCCEBAEF1AB7084700C806B2 /* WelcomeViewController.m in Sources */,
+				DCCEBB001AB7B36A00C806B2 /* ChatsListViewController.m in Sources */,
+				DCCEBB0C1AB7B5BB00C806B2 /* MainViewController.m in Sources */,
+				DCCEBAFB1AB7B31E00C806B2 /* FriendsListViewController.m in Sources */,
 				DC060A8F1AB6966B00CB19EB /* AppDelegate.m in Sources */,
 				DC060A8C1AB6966B00CB19EB /* main.m in Sources */,
+				DCCEBB061AB7B3A800C806B2 /* ChatDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

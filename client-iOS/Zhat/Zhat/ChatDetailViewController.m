@@ -1,20 +1,18 @@
 //
-//  WelcomeViewController.m
+//  ChatDetailViewController.m
 //  Zhat
 //
 //  Created by Zhi Li on 3/16/15.
 //  Copyright (c) 2015 Zhi Li. All rights reserved.
 //
 
-#import "WelcomeViewController.h"
+#import "ChatDetailViewController.h"
 
-
-@interface WelcomeViewController ()
-
+@interface ChatDetailViewController ()
 
 @end
 
-@implementation WelcomeViewController
+@implementation ChatDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
