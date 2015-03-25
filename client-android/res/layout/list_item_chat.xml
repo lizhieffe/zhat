@@ -1,10 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeightLarge"
-    android:padding="6dip" >
+    android:padding="4dip" >
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/friend_image"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
@@ -13,29 +13,28 @@
         android:contentDescription="TODO"
         android:src="@drawable/ic_launcher" />
 
-    <TextView
-        android:id="@+id/secondLine"
-        android:layout_width="fill_parent"
-        android:layout_height="40dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/icon"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:text="Example Last Chat"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/firstLine"
-        android:layout_width="fill_parent"
+    <TextView android:id="@+id/friend_name"
+        android:layout_width="match_parent"
+        android:layout_height="20dip"
+        android:layout_toRightOf="@id/friend_image"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="2dp"
+        android:text="Example Friend Name" />
+    
+    <TextView android:id="@+id/last_conversation_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/secondLine"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/icon"
-        android:gravity="center_vertical"
-        android:text="Example Friend Name"
-        android:textSize="16sp" />
-
+        android:layout_toRightOf="@id/friend_image"
+        android:layout_below="@id/friend_name"
+        android:textSize="10sp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="2dp"
+        android:text="Example Last Chat" />
+    
+    
+    
 </RelativeLayout> 
