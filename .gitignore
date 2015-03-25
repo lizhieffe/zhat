@@ -28,3 +28,5 @@ client-iOS/Zhat/Zhat.xcodeproj/xcuserdata/zhili.xcuserdatad/xcschemes/Zhat.xcsch
 *.xcscheme
 
 *.xcbkptlist
+
+*.prefs

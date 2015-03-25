@@ -67,8 +67,7 @@ public class ChannelReadProcessor implements IChannelProcessor {
 			
 			servlet.service(this.server, socketChannel, request);
 		} 
-		catch (ZLHttpRequestMethodException | ZLHttpRequestContentTypeException | InstantiationException
-				| IllegalAccessException | ClassNotFoundException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 			key.channel().close();
 			key.cancel();
