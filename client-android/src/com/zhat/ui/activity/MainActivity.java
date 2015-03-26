@@ -4,8 +4,10 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.zhat.R;
 import com.zhat.ui.fragment.ChatListFragment;
 import com.zhat.ui.fragment.FriendListFragment;
@@ -21,10 +23,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        // Initiate the app preference
+        initAppPreference();
+        
         if (savedInstanceState != null)
         	mSelectedTab = savedInstanceState.getInt(SELECTED_TAB);
         
         initNavigationTabs();
+        
+        String serverUrl = PreferenceManager.getDefaultSharedPreferences(this)
+        		.getString("server_url", "");
+        System.out.println(serverUrl);
     }
 
 
@@ -52,6 +61,10 @@ public class MainActivity extends Activity {
     	savedInstanceState.putInt(SELECTED_TAB, getActionBar().getSelectedNavigationIndex());
     	
     	super.onSaveInstanceState(savedInstanceState);
+    }
+    
+    public void initAppPreference() {
+    	PreferenceManager.setDefaultValues(this, R.xml.preference, false);
     }
     
     public void initNavigationTabs() {
