@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.zhat.R;
 
 public class GetFriendListService {
 
@@ -20,7 +21,7 @@ public class GetFriendListService {
 	}
 	
 	private String getUri() {
-		return "/get_friend_list";
+		return mContext.getString(R.string.uri_get_friend_list);
 	}
 	
 	public void start() {
