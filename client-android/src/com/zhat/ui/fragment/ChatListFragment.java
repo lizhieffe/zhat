@@ -65,6 +65,5 @@ public class ChatListFragment extends ListFragment {
 			
 			return convertView;
 		}
-		
 	}
 }
