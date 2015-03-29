@@ -24,7 +24,7 @@ public class ZLHttpRequestFactory {
 				for (int j = i; j < lines.length; ++j)
 					builder.append(lines[j]);
 				
-				if (request.getContentType() == ZLHttpRequestContentType.APPLICATION_JSON)
+				if (request.getContentType() == ZLHttpContentType.APPLICATION_JSON)
 					request.setJsonData(new JSONObject(builder.toString()));
 				break;
 			}
@@ -50,7 +50,7 @@ public class ZLHttpRequestFactory {
 			else {
 				String[] parts = lines[i].split(":", 2);
 				if (parts[0].trim().equalsIgnoreCase("Content-Type"))
-					request.setHttpRequestContentType(ZLHttpRequestContentType.parseContentTypeFromString(parts[1].trim()));
+					request.setHttpRequestContentType(ZLHttpContentType.parseContentTypeFromString(parts[1].trim()));
 				else
 					request.getHeaders().put(parts[0].trim(), parts[1].trim());
 			}

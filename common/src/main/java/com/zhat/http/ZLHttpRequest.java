@@ -11,10 +11,10 @@ public class ZLHttpRequest {
 	private ZLHttpRequestMethod method;
 	private String URI;
 	private Map<String, String> headers = new HashMap<String, String>();
-	private ZLHttpRequestContentType contentType;
+	private ZLHttpContentType contentType;
 	private JSONObject jsonData;
 	
-	public void setContentType(ZLHttpRequestContentType contentType) {
+	public void setContentType(ZLHttpContentType contentType) {
 		this.contentType = contentType;
 	}
 	
@@ -42,11 +42,11 @@ public class ZLHttpRequest {
 		this.headers = headers;
 	}
 	
-	public ZLHttpRequestContentType getContentType() {
+	public ZLHttpContentType getContentType() {
 		return this.contentType;
 	}
 	
-	public void setHttpRequestContentType(ZLHttpRequestContentType contentType) {
+	public void setHttpRequestContentType(ZLHttpContentType contentType) {
 		this.contentType = contentType;
 	}
 	
@@ -70,7 +70,7 @@ public class ZLHttpRequest {
 			builder.append(entry.getKey() + " = " + entry.getValue() + "\n");
 		}
 		builder.append("\n------------------ Body ------------------\n");
-		if (this.contentType == ZLHttpRequestContentType.APPLICATION_JSON)
+		if (this.contentType == ZLHttpContentType.APPLICATION_JSON)
 			builder.append(this.jsonData);
 		return builder.toString();
 	}
