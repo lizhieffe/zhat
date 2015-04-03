@@ -37,7 +37,6 @@ public class Application {
     	
     	
     	
-    	
     	System.out.println("Test Hibernate");
     	Session session = MySQLSessionFactory.openSession();
     	session.beginTransaction();

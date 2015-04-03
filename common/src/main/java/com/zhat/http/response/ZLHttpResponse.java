@@ -132,4 +132,6 @@ public class ZLHttpResponse {
 	public byte[] toByteArray() throws IOException {
 		return IOUtils.toByteArray(toInputStream());
 	}
+	
+	
 }
