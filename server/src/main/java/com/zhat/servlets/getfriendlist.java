@@ -11,11 +11,12 @@ import com.zhat.http.ZLHttpRequest;
 import com.zhat.http.response.ZLHttpResponse;
 import com.zhat.server.Server;
 
-public class testjson extends AZLHttpServlet {
+public class getfriendlist extends AZLHttpServlet {
 
 	@Override
-	protected void doGet(Server server, SocketChannel socket, ZLHttpRequest request) 
-			throws IOException {	
+	protected void doGet(Server server, SocketChannel socket,
+			ZLHttpRequest request) throws IOException {
+		
 		ZLHttpResponse response = new ZLHttpResponse();
 		response.setStatus(HttpStatus.SC_OK);
 		response.setContentType(ZLHttpContentType.APPLICATION_JSON);
@@ -24,8 +25,10 @@ public class testjson extends AZLHttpServlet {
 	}
 
 	@Override
-	protected void doPost(Server server, SocketChannel socket, ZLHttpRequest request)
-			throws IOException {
-		doGet(server, socket, request);
+	protected void doPost(Server server, SocketChannel socket,
+			ZLHttpRequest request) throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
+	
 }

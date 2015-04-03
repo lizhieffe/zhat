@@ -6,9 +6,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 import com.zhat.http.ZLHttpRequest;
-import com.zhat.http.ZLHttpRequestContentTypeException;
 import com.zhat.http.ZLHttpRequestFactory;
-import com.zhat.http.ZLHttpRequestMethodException;
 import com.zhat.interfaces.IChannelProcessor;
 import com.zhat.interfaces.IZLHttpServlet;
 
