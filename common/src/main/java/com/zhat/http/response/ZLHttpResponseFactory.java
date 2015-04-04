@@ -24,7 +24,6 @@ public class ZLHttpResponseFactory {
 		ZLHttpResponse response = new ZLHttpResponse();
 		response.setStatus(HttpStatus.SC_BAD_REQUEST);
 		response.setContentType(ZLHttpContentType.APPLICATION_JSON);
-		response.
 		return response;
 	}
 }
