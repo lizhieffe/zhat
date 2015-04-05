@@ -12,11 +12,11 @@ import com.zhat.http.exceptions.ZLHttpRequestContentException;
 import com.zhat.http.exceptions.ZLHttpRequestException;
 import com.zhat.http.exceptions.ZLHttpRequestMethodException;
 import com.zhat.http.response.ZLHttpServletResponse;
-import com.zhat.model.User;
+import com.zhat.model.Friend;
 import com.zhat.server.exceptions.ServerInternalException;
 
-public class adduser extends AZLHttpServlet {
-
+public class addfriend extends AZLHttpServlet {
+	
 	@Override
 	protected void doGet(ZLHttpRequest request, ZLHttpServletResponse response) 
 			throws ZLHttpRequestException {
@@ -28,19 +28,14 @@ public class adduser extends AZLHttpServlet {
 			throws ZLHttpRequestException, ServerInternalException {
 		try {
 			JSONObject json = request.getJsonData();
-			String firstName = json.getString(HttpConstants.PARAM_FIRST_NAME);
-			String lastName = json.getString(HttpConstants.PARAM_LAST_NAME);
-			String sex = json.getString(HttpConstants.PARAM_SEX);
-			String email = json.getString(HttpConstants.PARAM_EMAIL);
-			User.addUser(firstName, lastName, sex, email);
+			int userId = json.getInt(HttpConstants.PARAM_USER_ID);
+			int friendId = json.getInt(HttpConstants.PARAM_FRIEND_USER_ID);
+			Friend.addFriend(userId, friendId);
 			response.getWriter().println(HttpConstants.RESPONSE_SUCCESS_MSG);
 			response.getWriter().close();
 		}
 		catch (JSONException e) {
-			throw new ZLHttpRequestContentException();
-		}
-		catch (ZLHttpRequestContentException e) {
-			throw e;
+			throw new ZLHttpRequestContentException("Wrong request parameter.");
 		}
 		catch (IOException e) {
 			throw new ServerInternalException();

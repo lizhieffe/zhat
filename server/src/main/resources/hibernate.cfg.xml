@@ -24,6 +24,7 @@
         <!-- Mapping files -->
         <!-- <mapping resource="hibernate-mapping/User.hbm.xml"/> -->
         <mapping class="com.zhat.model.User"/>
+        <mapping class="com.zhat.model.Friend"/>
     </session-factory>
 
 </hibernate-configuration>

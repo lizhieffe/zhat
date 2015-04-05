@@ -11,7 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import com.zhat.hibernate.MySQLSessionFactory;
-import com.zhat.model.exceptions.UserSexException;
+import com.zhat.http.exceptions.ZLHttpRequestContentException;
 
 @Entity
 @Table(name = "user")
@@ -38,7 +38,7 @@ public class User {
 	public User() {}
 	
 	public static void addUser(String firstName, String lastName, String sex, String email)
-			throws UserSexException {
+			throws ZLHttpRequestContentException {
 		Session session = MySQLSessionFactory.openSession();
     	session.beginTransaction();
     	
@@ -48,7 +48,7 @@ public class User {
     	
     	if (!sex.equalsIgnoreCase(SEX_MALE) && !sex.equalsIgnoreCase(SEX_FEMALE)
     			&& !sex.equalsIgnoreCase(SEX_UNKNOWN))
-    		throw new UserSexException();
+    		throw new ZLHttpRequestContentException("Wrong sex value.");
     	
     	user.setEmail(email);
     	user.setSex(sex);

@@ -20,10 +20,10 @@ public abstract class AZLHttpServlet implements IZLHttpServlet {
 				doPost(request, response);
 		}
 		catch (ZLHttpRequestException e) {
-			doGetException(request, response);
+			doGetException(request, response, e);
 		}
 		catch (ServerException e) {
-			doGetException(request, response);
+			doGetException(request, response, e);
 		}
 	}
 	
@@ -39,8 +39,9 @@ public abstract class AZLHttpServlet implements IZLHttpServlet {
 	 * @param socket
 	 * @param request
 	 */
-	private void doGetException(ZLHttpRequest request, ZLHttpServletResponse response) {
+	private void doGetException(ZLHttpRequest request, ZLHttpServletResponse response
+			, Exception e) {
 		response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
-		response.setHeader("ZL-Exception", "Server Error");
+		response.setHeader("ZL-Exception", e.getMessage());
 	}
 }
