@@ -3,15 +3,11 @@ package com.zhat.servlets;
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-
 import com.zhat.abstracts.AZLHttpServlet;
 import com.zhat.http.ZLHttpContentType;
 import com.zhat.http.ZLHttpRequest;
-import com.zhat.http.response.HttpResponseBuilder;
-import com.zhat.http.response.HttpResponseUtils;
-import com.zhat.http.response.ZLHttpResponse;
+import com.zhat.http.response.ZLHttpServletResponse;
+import com.zhat.http.response.ZLHttpServletResponseBuilder;
 import com.zhat.server.Server;
 
 public class testjson extends AZLHttpServlet {
@@ -25,12 +21,12 @@ public class testjson extends AZLHttpServlet {
 //		response.setContent("{}");
 //		server.send(socket, response.toByteArray());
 		
-		HttpResponse response = new HttpResponseBuilder()
+		ZLHttpServletResponse response = new ZLHttpServletResponseBuilder()
 				.header("ddd", "d")
 				.content("{}")
 				.contentType(ZLHttpContentType.APPLICATION_JSON)
 				.build();
-		server.send(socket, HttpResponseUtils.toByteArray(response));
+		server.send(socket, response.toByteArray());
 		
 	}
 

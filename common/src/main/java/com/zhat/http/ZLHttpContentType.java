@@ -1,6 +1,7 @@
 package com.zhat.http;
 
 public enum ZLHttpContentType {
+	
 	APPLICATION_TEXT_PLAIN("text/plain"),
 	APPLICATION_JSON("application/json"),
 	APPLICATION_X_WWW_FORM_URLENCODED("application/x-www-form-urlencoded");
@@ -19,6 +20,10 @@ public enum ZLHttpContentType {
 				return type;
 		
 		throw new ZLHttpRequestContentTypeException();
+	}
+	
+	public String toString() {
+		return getContentTypeText();
 	}
 	
 	public String getContentTypeText() {

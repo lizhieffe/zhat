@@ -52,7 +52,7 @@ public class ZLHttpServletResponse implements HttpServletResponse {
 
 	@Override
 	public String getContentType() {
-		return contentType.toString();
+		return contentType.getContentTypeText();
 	}
 
 	@Override
@@ -251,6 +251,10 @@ public class ZLHttpServletResponse implements HttpServletResponse {
 	 */
 	public String getHeadersText() {
 		StringBuilder sb = new StringBuilder();
+		sb.append(KEY_CONTENT_TYPE);
+		sb.append(": ");
+		sb.append(getContentType());
+		sb.append("\n");
 		Iterator<Entry<String, Set<String>>> it = headers.entrySet().iterator();
 		while (it.hasNext()) {
 			Entry<String, Set<String>> entry = it.next();
@@ -286,8 +290,15 @@ public class ZLHttpServletResponse implements HttpServletResponse {
 	}
 	
 	public byte[] toByteArray() {
-		return contentOutputStream.toByteArray();
+		try {
+			return ZLIOUtils.inputStream2ByteArray(toInputStream());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
+	
 	public String toString() {
 		return null;
 	}

@@ -9,6 +9,14 @@ import org.apache.commons.io.IOUtils;
 
 public class ZLIOUtils {
 	
+	public static byte[] inputStream2ByteArray(InputStream is) throws IOException {
+		return IOUtils.toByteArray(is);
+	}
+	
+	public static String inputStream2String(InputStream is) throws IOException {
+		return new String(inputStream2ByteArray(is));
+	}
+	
 	public static ByteArrayInputStream outputStream2InputStream(ByteArrayOutputStream os) {
 		byte[] data = os.toByteArray();
 		return new ByteArrayInputStream(data);
