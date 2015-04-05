@@ -1,35 +1,31 @@
 package com.zhat.abstracts;
 
-import java.io.IOException;
-import java.nio.channels.SocketChannel;
-
 import org.apache.commons.httpclient.HttpStatus;
 
 import com.zhat.http.ZLHttpRequest;
 import com.zhat.http.ZLHttpRequestMethod;
-import com.zhat.http.response.ZLHttpResponse;
+import com.zhat.http.response.ZLHttpServletResponse;
 import com.zhat.interfaces.IZLHttpServlet;
-import com.zhat.server.Server;
 
 public abstract class AZLHttpServlet implements IZLHttpServlet {
 	
 	@Override
-	public void service(Server server, SocketChannel socket, ZLHttpRequest request) {
+	public void service(ZLHttpRequest request, ZLHttpServletResponse response) {
 		try {
 			if (request.getMethod() == ZLHttpRequestMethod.GET)
-				doGet(server, socket, request);
+				doGet(request, response);
 			else if (request.getMethod() == ZLHttpRequestMethod.POST)
-				doPost(server, socket, request);
+				doPost(request, response);
 		}
-		catch (IOException e) {
-			doGetException(server, socket, request);
+		catch (Exception e) {
+			doGetException(request, response);
 		}
 	}
 	
-	protected abstract void doGet(Server server, SocketChannel socket, ZLHttpRequest request)
-			throws IOException;
-	protected abstract void doPost(Server server, SocketChannel socket, ZLHttpRequest request)
-			throws IOException;
+	protected abstract void doGet(ZLHttpRequest request, ZLHttpServletResponse response)
+			throws Exception;
+	protected abstract void doPost(ZLHttpRequest request, ZLHttpServletResponse response)
+			throws Exception;
 	
 	/**
 	 * Capture the exception thrown by servlet and return 500 error.
@@ -38,13 +34,8 @@ public abstract class AZLHttpServlet implements IZLHttpServlet {
 	 * @param socket
 	 * @param request
 	 */
-	private void doGetException(Server server, SocketChannel socket, ZLHttpRequest request) {
-		ZLHttpResponse response = new ZLHttpResponse();
+	private void doGetException(ZLHttpRequest request, ZLHttpServletResponse response) {
 		response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
-		try {
-			server.send(socket, response.toByteArray());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		response.setHeader("ZL-Exception", "Server Error");
 	}
 }

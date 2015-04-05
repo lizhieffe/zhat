@@ -1,12 +1,8 @@
 package com.zhat.interfaces;
 
-import java.io.IOException;
-import java.nio.channels.SocketChannel;
-
 import com.zhat.http.ZLHttpRequest;
-import com.zhat.server.Server;
+import com.zhat.http.response.ZLHttpServletResponse;
 
 public interface IZLHttpServlet {
-	public void service(Server server, SocketChannel socket, ZLHttpRequest request)
-			throws IOException;
+	public void service(ZLHttpRequest request, ZLHttpServletResponse response) throws Exception;
 }

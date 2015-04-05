@@ -1,4 +1,4 @@
-package com.zhat.http;
+package com.zhat.http.exceptions;
 
 public class ZLHttpRequestContentTypeException extends Exception {
 

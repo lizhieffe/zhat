@@ -1,5 +1,7 @@
 package com.zhat.http;
 
+import com.zhat.http.exceptions.ZLHttpRequestMethodException;
+
 public enum ZLHttpRequestMethod {
 	GET,
 	POST,

@@ -1,5 +1,7 @@
 package com.zhat.http;
 
+import com.zhat.http.exceptions.ZLHttpRequestContentTypeException;
+
 public enum ZLHttpContentType {
 	
 	APPLICATION_TEXT_PLAIN("text/plain"),

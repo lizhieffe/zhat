@@ -1,10 +1,8 @@
 package com.zhat.servlets;
 
-import java.nio.channels.SocketChannel;
-
 import com.zhat.abstracts.AZLHttpServlet;
 import com.zhat.http.ZLHttpRequest;
-import com.zhat.server.Server;
+import com.zhat.http.response.ZLHttpServletResponse;
 
 public class echo extends AZLHttpServlet {
 	
@@ -51,12 +49,12 @@ public class echo extends AZLHttpServlet {
 //	}
 
 	@Override
-	protected void doGet(Server server, SocketChannel socket, ZLHttpRequest request) {
-		server.send(socket, request.toString().getBytes());
+	protected void doGet(ZLHttpRequest request, ZLHttpServletResponse response) {
+		
 	}
-
+	
 	@Override
-	protected void doPost(Server server, SocketChannel socket, ZLHttpRequest request) {
-		server.send(socket, request.toString().getBytes());
+	protected void doPost(ZLHttpRequest request, ZLHttpServletResponse response) {
+		
 	}
 }

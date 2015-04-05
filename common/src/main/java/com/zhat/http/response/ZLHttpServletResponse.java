@@ -23,7 +23,7 @@ import org.apache.commons.io.IOUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import com.zhat.http.ZLHttpContentType;
-import com.zhat.http.ZLHttpRequestContentTypeException;
+import com.zhat.http.exceptions.ZLHttpRequestContentTypeException;
 import com.zhat.utils.ZLIOUtils;
 
 public class ZLHttpServletResponse implements HttpServletResponse {

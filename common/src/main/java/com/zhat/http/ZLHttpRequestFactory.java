@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.json.JSONObject;
 
+import com.zhat.http.exceptions.ZLHttpRequestContentTypeException;
+import com.zhat.http.exceptions.ZLHttpRequestMethodException;
 import com.zhat.utils.StringUtils;
 
 public class ZLHttpRequestFactory {

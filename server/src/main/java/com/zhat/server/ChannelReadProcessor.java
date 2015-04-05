@@ -7,6 +7,7 @@ import java.nio.channels.SocketChannel;
 
 import com.zhat.http.ZLHttpRequest;
 import com.zhat.http.ZLHttpRequestFactory;
+import com.zhat.http.response.ZLHttpServletResponse;
 import com.zhat.interfaces.IChannelProcessor;
 import com.zhat.interfaces.IZLHttpServlet;
 
@@ -51,8 +52,10 @@ public class ChannelReadProcessor implements IChannelProcessor {
 		}
 
 		ZLHttpRequest request = null;
+		ZLHttpServletResponse response = null;
 		try {
 			request = ZLHttpRequestFactory.createHttpRequestByParsingInput(this.readBuffer.array());
+			response = new ZLHttpServletResponse();
 			
 			String URI = request.getURI();
 			String servletName = URI.substring(URI.lastIndexOf('/') + 1);
@@ -63,7 +66,8 @@ public class ChannelReadProcessor implements IChannelProcessor {
 			String className = packageName + "servlets." + servletName;
 			IZLHttpServlet servlet = (IZLHttpServlet) Class.forName(className).newInstance();
 			
-			servlet.service(this.server, socketChannel, request);
+			servlet.service(request, response);
+			server.send(socketChannel, response.toByteArray());
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
