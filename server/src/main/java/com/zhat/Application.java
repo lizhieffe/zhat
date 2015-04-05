@@ -38,21 +38,5 @@ public class Application {
     	
     	
     	System.out.println("Test Hibernate");
-    	Session session = MySQLSessionFactory.openSession();
-    	session.beginTransaction();
-    	
-    	User user = new User();
-    	user.setName("vli");
-    	user.setSex(User.SEX_MALE);
-    	session.save(user);
-    	
-    	User user1 = new User();
-    	user1.setName("lijuan");
-    	user1.setSex(User.SEX_FEMALE);
-    	session.save(user1);
-    	
-    	session.getTransaction().commit();
-    	session.flush();
-    	session.close();
     }
 }

@@ -4,8 +4,10 @@ import org.apache.commons.httpclient.HttpStatus;
 
 import com.zhat.http.ZLHttpRequest;
 import com.zhat.http.ZLHttpRequestMethod;
+import com.zhat.http.exceptions.ZLHttpRequestException;
 import com.zhat.http.response.ZLHttpServletResponse;
 import com.zhat.interfaces.IZLHttpServlet;
+import com.zhat.server.exceptions.ServerException;
 
 public abstract class AZLHttpServlet implements IZLHttpServlet {
 	
@@ -17,15 +19,18 @@ public abstract class AZLHttpServlet implements IZLHttpServlet {
 			else if (request.getMethod() == ZLHttpRequestMethod.POST)
 				doPost(request, response);
 		}
-		catch (Exception e) {
+		catch (ZLHttpRequestException e) {
+			doGetException(request, response);
+		}
+		catch (ServerException e) {
 			doGetException(request, response);
 		}
 	}
 	
 	protected abstract void doGet(ZLHttpRequest request, ZLHttpServletResponse response)
-			throws Exception;
+			throws ZLHttpRequestException, ServerException;
 	protected abstract void doPost(ZLHttpRequest request, ZLHttpServletResponse response)
-			throws Exception;
+			throws ZLHttpRequestException, ServerException;
 	
 	/**
 	 * Capture the exception thrown by servlet and return 500 error.

@@ -1,6 +1,6 @@
 package com.zhat.http.exceptions;
 
-public class ZLHttpRequestContentException extends Exception {
+public class ZLHttpRequestContentException extends ZLHttpRequestException {
 
 	/**
 	 * 
