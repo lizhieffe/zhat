@@ -2,10 +2,6 @@ package com.zhat;
 
 import java.io.IOException;
 
-import org.hibernate.Session;
-
-import com.zhat.hibernate.MySQLSessionFactory;
-import com.zhat.model.User;
 import com.zhat.server.EchoWorker;
 import com.zhat.server.Server;
 import com.zhat.utils.AppProperties;

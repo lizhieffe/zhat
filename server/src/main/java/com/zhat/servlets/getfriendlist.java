@@ -1,11 +1,6 @@
 package com.zhat.servlets;
 
-import org.apache.http.HttpStatus;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.zhat.abstracts.AZLHttpServlet;
-import com.zhat.http.ZLHttpContentType;
 import com.zhat.http.ZLHttpRequest;
 import com.zhat.http.exceptions.ZLHttpRequestContentException;
 import com.zhat.http.response.ZLHttpServletResponse;
