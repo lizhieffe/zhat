@@ -30,4 +30,5 @@
   <classpathentry kind="var" path="M2_REPO/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar" sourcepath="M2_REPO/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-entitymanager/4.3.8.Final/hibernate-entitymanager-4.3.8.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-entitymanager/4.3.8.Final/hibernate-entitymanager-4.3.8.Final-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar" sourcepath="M2_REPO/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar"/>
 </classpath>

@@ -2,6 +2,7 @@ package com.zhat.http;
 
 import java.io.IOException;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.zhat.http.exceptions.ZLHttpRequestContentTypeException;
@@ -26,8 +27,15 @@ public class ZLHttpRequestFactory {
 				for (int j = i; j < lines.length; ++j)
 					builder.append(lines[j]);
 				
-				if (request.getContentType() == ZLHttpContentType.APPLICATION_JSON)
-					request.setJsonData(new JSONObject(builder.toString()));
+				if (request.getContentType() == ZLHttpContentType.APPLICATION_JSON) {
+					try {
+						request.setJsonData(new JSONObject(builder.toString()));
+					}
+					catch (JSONException e) {
+//						e.printStackTrace();
+						return request;
+					}
+				}
 				break;
 			}
 			/*
@@ -44,7 +52,21 @@ public class ZLHttpRequestFactory {
 			if (i == 0) {
 				String[] parts = lines[i].split(" ");
 				request.setMethod(ZLHttpRequestMethod.parseMethodFromString(parts[0]));
-				request.setURI(parts[1]);
+				
+				String[] uriParts = parts[1].split("\\?");
+				
+				String uri = uriParts[0];
+				if (uri.charAt(0) == '/')
+					uri = uri.substring(1, uri.length());
+				request.setURI(uri);
+				
+				if (uriParts.length == 2) {
+					String[] params = uriParts[1].split("&");
+					for (String param : params) {
+						String[] keyValueParts = param.split("=");
+						request.setParams(keyValueParts[0], keyValueParts[1]);
+					}
+				}
 			}
 			/*
 			 * Read the headers part

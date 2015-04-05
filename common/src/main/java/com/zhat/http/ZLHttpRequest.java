@@ -7,9 +7,12 @@ import java.util.Map.Entry;
 
 import org.json.JSONObject;
 
+import com.zhat.http.exceptions.MapKeyNotExistException;
+
 public class ZLHttpRequest {
 	private ZLHttpRequestMethod method;
 	private String URI;
+	private Map<String, String> params = new HashMap<String, String>();
 	private Map<String, String> headers = new HashMap<String, String>();
 	private ZLHttpContentType contentType;
 	private JSONObject jsonData;
@@ -32,6 +35,25 @@ public class ZLHttpRequest {
 	
 	public void setURI(String uRI) {
 		URI = uRI;
+	}
+	
+	/**
+	 * Get the value for the key of the parameters.
+	 * @param key
+	 * @return: the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+	 */
+	public String getParam(String key) throws MapKeyNotExistException {
+		if (!params.containsKey(key))
+			throw new MapKeyNotExistException();
+		return params.get(key);
+	}
+	
+	public Map<String, String> getParams() {
+		return params;
+	}
+	
+	public void setParams(String key, String value) {
+		params.put(key, value);
 	}
 	
 	public Map<String, String> getHeaders() {

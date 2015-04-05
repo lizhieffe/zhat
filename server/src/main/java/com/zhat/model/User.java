@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.zhat.hibernate.MySQLSessionFactory;
 import com.zhat.model.exceptions.UserSexException;
@@ -24,30 +26,51 @@ public class User {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "firstname")
+	private String firstName;
 	
+	@Column(name = "lastname")
+	private String lastName;
+		
 	private String sex;
-	
+	private String email;
+
 	public User() {}
 	
-	public static void addUser(String name, String sex) throws UserSexException {
+	public static void addUser(String firstName, String lastName, String sex, String email)
+			throws UserSexException {
 		Session session = MySQLSessionFactory.openSession();
     	session.beginTransaction();
     	
     	User user = new User();
-    	user.setName(name);
+    	user.setFirstName(firstName);
+    	user.setLastName(lastName);
     	
     	if (!sex.equalsIgnoreCase(SEX_MALE) && !sex.equalsIgnoreCase(SEX_FEMALE)
     			&& !sex.equalsIgnoreCase(SEX_UNKNOWN))
     		throw new UserSexException();
     	
+    	user.setEmail(email);
     	user.setSex(sex);
     	session.save(user);
     	
     	session.getTransaction().commit();
     	session.flush();
     	session.close();
+	}
+	
+	public static User getUserByEmail(String email) {
+		Session session = MySQLSessionFactory.openSession();
+    	session.beginTransaction();
+    	
+    	Criteria criteria = session.createCriteria(User.class);
+    	User result = (User) criteria.add(Restrictions.eq("email", email)).uniqueResult();
+    	
+    	session.getTransaction().commit();
+    	session.flush();
+    	session.close();
+    	
+    	return result;
 	}
 	
 	public int getId() {
@@ -58,12 +81,20 @@ public class User {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String name) {
+		this.firstName = name;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String name) {
+		this.lastName = name;
 	}
 	
 	public String getSex() {
@@ -72,5 +103,13 @@ public class User {
 	
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

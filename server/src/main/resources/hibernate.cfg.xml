@@ -22,7 +22,8 @@
         <property name="show_sql">true</property>
 
         <!-- Mapping files -->
-        <mapping resource="hibernate-mapping/User.hbm.xml"/>
+        <!-- <mapping resource="hibernate-mapping/User.hbm.xml"/> -->
+        <mapping class="com.zhat.model.User"/>
     </session-factory>
 
 </hibernate-configuration>

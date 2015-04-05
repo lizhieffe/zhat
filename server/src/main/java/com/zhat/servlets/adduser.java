@@ -28,9 +28,11 @@ public class adduser extends AZLHttpServlet {
 			throws ZLHttpRequestException, ServerInternalException {
 		try {
 			JSONObject json = request.getJsonData();
-			String name = json.getString("name");
+			String firstName = json.getString("first_name");
+			String lastName = json.getString("last_name");
 			String sex = json.getString("sex");
-			User.addUser(name, sex);
+			String email = json.getString("email");
+			User.addUser(firstName, lastName, sex, email);
 			response.getWriter().println("true");
 			response.getWriter().close();
 		}
