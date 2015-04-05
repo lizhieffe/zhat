@@ -7,14 +7,14 @@ import com.zhat.http.ZLHttpContentType;
 public class HttpResponseFactory {
 	
 	public static HttpResponse createSuccessResponse() {
-		return new HttpResponseBuilder()
+		return new HttpServletResponseBuilder()
 				.status(HttpStatus.SC_OK)
 				.contentType(ZLHttpContentType.APPLICATION_JSON)
 				.build();
 	}
 	
 	public static HttpResponse createFailureResponse() {
-		return new HttpResponseBuilder()
+		return new HttpServletResponseBuilder()
 				.status(HttpStatus.SC_BAD_REQUEST)
 				.contentType(ZLHttpContentType.APPLICATION_JSON)
 				.build();

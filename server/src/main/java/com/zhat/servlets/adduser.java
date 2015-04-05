@@ -23,9 +23,9 @@ public class adduser extends AZLHttpServlet {
 	protected void doPost(Server server, SocketChannel socket,
 			ZLHttpRequest request) throws IOException {
 		
-		if (request.getContentType() != ZLHttpContentType.APPLICATION_JSON)
-		ZLHttpResponse response = ZLHttpResponseFactory.buildSuccessResponse();
-		server.send(socket, response.toByteArray());
+//		if (request.getContentType() != ZLHttpContentType.APPLICATION_JSON)
+//		ZLHttpResponse response = ZLHttpResponseFactory.buildSuccessResponse();
+//		server.send(socket, response.toByteArray());
 	}
 
 }

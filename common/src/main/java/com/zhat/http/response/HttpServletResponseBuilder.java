@@ -9,6 +9,7 @@ import org.apache.http.ProtocolVersion;
 import org.apache.http.entity.BasicHttpEntity;
 import org.apache.http.message.BasicHttpResponse;
 import org.json.JSONObject;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.zhat.http.ZLHttpContentType;
@@ -18,20 +19,22 @@ import com.zhat.http.ZLHttpContentType;
  * @author zhili
  *
  */
-public class HttpResponseBuilder {
+public class HttpServletResponseBuilder {
+	
+	private static String KEY_CONTENT_TYPE = "Content-Type";
 	
 	private int status = 200;
-	private BasicHttpEntity entity;
+	private ZLHttpContentType contentType; 
 	private Multimap<String, String> headers;
 	private InputStream contentInputStream;
 	private String contentStr;
 	private JSONObject contentJSONObject;
 	
-	HttpResponseBuilder() {
+	public HttpServletResponseBuilder() {
 		this.headers = HashMultimap.create();
 	}
 	
-	public HttpResponseBuilder status(int status) {
+	public HttpServletResponseBuilder status(int status) {
 		this.status = status;
 		return this;
 	}
@@ -42,29 +45,29 @@ public class HttpResponseBuilder {
 	 * @param val: header value.
 	 * @return: ZLHttpResponseBuilder
 	 */
-	public HttpResponseBuilder header(String key, String val) {
+	public HttpServletResponseBuilder header(String key, String val) {
 		headers.put(key, val);
 		return this;
 	}
 	
-	public HttpResponseBuilder contentType(ZLHttpContentType contentType) {
-		entity.setContentType(contentType.getContentTypeText());
+	public HttpServletResponseBuilder contentType(ZLHttpContentType contentType) {
+		this.contentType = contentType;
 		return this;
 	}
 	
-	public HttpResponseBuilder content(InputStream inputStream) {
+	public HttpServletResponseBuilder content(InputStream inputStream) {
 		clearContent();
 		this.contentInputStream = inputStream;
 		return this;
 	}
 	
-	public HttpResponseBuilder content(String str) {
+	public HttpServletResponseBuilder content(String str) {
 		clearContent();
 		this.contentStr = str;
 		return this;
 	}
 	
-	public HttpResponseBuilder content(JSONObject json) {
+	public HttpServletResponseBuilder content(JSONObject json) {
 		clearContent();
 		this.contentJSONObject = json;
 		return this;
@@ -85,7 +88,8 @@ public class HttpResponseBuilder {
 		ProtocolVersion protocalVersion = new ProtocolVersion("HTTP", 1, 1);
 		BasicHttpResponse response = new BasicHttpResponse(protocalVersion, status, null);
 		
-		response.setEntity(new BasicHttpEntity());
+		if (contentType != null)
+			response.setHeader(KEY_CONTENT_TYPE, contentType.getContentTypeText());
 		
 		if (headers.size() > 0) {
 			for (Map.Entry<String, String> entry : headers.entries()) {

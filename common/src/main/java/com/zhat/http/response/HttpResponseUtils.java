@@ -84,8 +84,9 @@ public class HttpResponseUtils {
 	}
 	
 	public static InputStream toInputStream(HttpResponse response) throws IOException {
-		String statusLine = "HTTP/1.1 " + response.getStatusLine().getStatusCode() 
-				+ " " + getStatusText(response) + "\n";
+//		String statusLine = "HTTP/1.1 " + response.getStatusLine().getStatusCode() 
+//				+ " " + getStatusText(response) + "\n";
+		String statusLine = response.getStatusLine().toString() + "\n";
 		String emptyLine = "\n";
 		
 		return new SequenceInputStream(IOUtils.toInputStream(statusLine),
@@ -94,7 +95,7 @@ public class HttpResponseUtils {
 												, getContentInputStream(response))));
 	}
 	
-	public byte[] toByteArray(HttpResponse response) throws IOException {
+	public static byte[] toByteArray(HttpResponse response) throws IOException {
 		return IOUtils.toByteArray(toInputStream(response));
 	}
 }
