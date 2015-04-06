@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.zhat.abstracts.ZLHttpServlet;
-import com.zhat.constants.HttpConstants;
+import com.zhat.constants.ServletConstants;
 import com.zhat.http.ZLHttpServletRequest;
 import com.zhat.model.Friend;
 
@@ -32,10 +32,10 @@ public class addfriend extends ZLHttpServlet {
 			throws ServletException, IOException {
 		try {
 			JSONObject json = ((ZLHttpServletRequest) request).getJsonData();
-			int userId = json.getInt(HttpConstants.PARAM_USER_ID);
-			int friendId = json.getInt(HttpConstants.PARAM_FRIEND_USER_ID);
+			int userId = json.getInt(ServletConstants.PARAM_USER_ID);
+			int friendId = json.getInt(ServletConstants.PARAM_FRIEND_USER_ID);
 			Friend.addFriend(userId, friendId);
-			response.getWriter().println(HttpConstants.RESPONSE_SUCCESS_MSG);
+			response.getWriter().println(ServletConstants.RESPONSE_SUCCESS_MSG);
 			response.getWriter().close();
 		}
 		catch (JSONException e) {

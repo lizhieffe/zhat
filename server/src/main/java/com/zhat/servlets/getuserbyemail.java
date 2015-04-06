@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zhat.abstracts.ZLHttpServlet;
-import com.zhat.constants.HttpConstants;
+import com.zhat.constants.ServletConstants;
 import com.zhat.http.ZLHttpContentType;
 import com.zhat.http.response.ZLHttpServletResponse;
 import com.zhat.model.User;
@@ -24,7 +24,7 @@ public class getuserbyemail extends ZLHttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		String email = request.getParameter(HttpConstants.PARAM_EMAIL);
+		String email = request.getParameter(ServletConstants.PARAM_EMAIL);
 		User user = User.getUserByEmail(email);
 		String responseJsonText = null;
 		if (user != null)

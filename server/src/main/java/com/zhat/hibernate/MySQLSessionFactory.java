@@ -10,20 +10,17 @@ public class MySQLSessionFactory {
 	
 	private static SessionFactory sessionFactory;
 	
-	public static Session openSession() {
-		
-		synchronized (MySQLSessionFactory.class) {
-			if (sessionFactory == null) {
+	public synchronized static Session openSession() {
+		if (sessionFactory == null) {
 			
-				Configuration configuration=new Configuration().configure(); // configures settings from hibernate.cfg.xml
-				
-				StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
-				serviceRegistryBuilder.applySettings(configuration.getProperties());
-	
-	    		ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
-	    		
-	    		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-			}
+			Configuration configuration=new Configuration().configure(); // configures settings from hibernate.cfg.xml
+			
+			StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
+			serviceRegistryBuilder.applySettings(configuration.getProperties());
+
+    		ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
+    		
+    		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		}
 		
 		return sessionFactory.openSession();
