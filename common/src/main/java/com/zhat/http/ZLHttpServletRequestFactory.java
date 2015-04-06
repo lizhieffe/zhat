@@ -9,13 +9,13 @@ import com.zhat.http.exceptions.ZLHttpRequestContentTypeException;
 import com.zhat.http.exceptions.ZLHttpRequestMethodException;
 import com.zhat.utils.StringUtils;
 
-public class ZLHttpRequestFactory {
+public class ZLHttpServletRequestFactory {
 
-	public static ZLHttpRequest createHttpRequestByParsingInput(byte[] content) 
+	public static ZLHttpServletRequest createHttpRequestByParsingInput(byte[] content) 
 			throws IOException, ZLHttpRequestMethodException, ZLHttpRequestContentTypeException {
 		boolean finishedReadingHeader = false;
 		String[] lines = StringUtils.readLines(content);
-		ZLHttpRequest request = new ZLHttpRequest();
+		ZLHttpServletRequest request = new ZLHttpServletRequest();
 		
 		for (int i = 0; i < lines.length; ++i) {
 			
@@ -27,7 +27,8 @@ public class ZLHttpRequestFactory {
 				for (int j = i; j < lines.length; ++j)
 					builder.append(lines[j]);
 				
-				if (request.getContentType() == ZLHttpContentType.APPLICATION_JSON) {
+				if (request.getContentType()
+						.equalsIgnoreCase(ZLHttpContentType.APPLICATION_JSON.getContentTypeText())) {
 					try {
 						request.setJsonData(new JSONObject(builder.toString()));
 					}
@@ -56,9 +57,7 @@ public class ZLHttpRequestFactory {
 				String[] uriParts = parts[1].split("\\?");
 				
 				String uri = uriParts[0];
-				if (uri.charAt(0) == '/')
-					uri = uri.substring(1, uri.length());
-				request.setURI(uri);
+				request.setRequestURI(uri);
 				
 				if (uriParts.length == 2) {
 					String[] params = uriParts[1].split("&");

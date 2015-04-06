@@ -2,32 +2,37 @@ package com.zhat.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.zhat.abstracts.AZLHttpServlet;
+import com.zhat.abstracts.ZLHttpServlet;
 import com.zhat.constants.HttpConstants;
-import com.zhat.http.ZLHttpRequest;
+import com.zhat.http.ZLHttpServletRequest;
 import com.zhat.http.exceptions.ZLHttpRequestContentException;
-import com.zhat.http.exceptions.ZLHttpRequestException;
-import com.zhat.http.exceptions.ZLHttpRequestMethodException;
-import com.zhat.http.response.ZLHttpServletResponse;
 import com.zhat.model.User;
-import com.zhat.server.exceptions.ServerInternalException;
 
-public class adduser extends AZLHttpServlet {
+public class adduser extends ZLHttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1144371992776275468L;
 
 	@Override
-	protected void doGet(ZLHttpRequest request, ZLHttpServletResponse response) 
-			throws ZLHttpRequestException {
-		throw new ZLHttpRequestMethodException();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException {
+		throw new ServletException("Get method is not supported.");
 	}
 	
 	@Override
-	protected void doPost(ZLHttpRequest request, ZLHttpServletResponse response) 
-			throws ZLHttpRequestException, ServerInternalException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		try {
-			JSONObject json = request.getJsonData();
+			JSONObject json = ((ZLHttpServletRequest) request).getJsonData();
 			String firstName = json.getString(HttpConstants.PARAM_FIRST_NAME);
 			String lastName = json.getString(HttpConstants.PARAM_LAST_NAME);
 			String sex = json.getString(HttpConstants.PARAM_SEX);
@@ -37,13 +42,10 @@ public class adduser extends AZLHttpServlet {
 			response.getWriter().close();
 		}
 		catch (JSONException e) {
-			throw new ZLHttpRequestContentException();
+			throw new ServletException("Wrong request parameters.");
 		}
 		catch (ZLHttpRequestContentException e) {
-			throw e;
-		}
-		catch (IOException e) {
-			throw new ServerInternalException();
+			throw new ServletException("Wrong request parameters.");
 		}
 	}
 }

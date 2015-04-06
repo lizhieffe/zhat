@@ -3,11 +3,17 @@ package com.zhat.http;
 import com.zhat.http.exceptions.ZLHttpRequestMethodException;
 
 public enum ZLHttpRequestMethod {
-	GET,
-	POST,
-	PUT,
-	DELETE,
-	NONE;
+	GET("GET"),
+	POST("POST"),
+	PUT("PUT"),
+	DELETE("DELETE"),
+	NONE("NONE");
+	
+	private String methodText;
+	
+	ZLHttpRequestMethod(String methodText) {
+		this.methodText = methodText;
+	}
 	
 	public static ZLHttpRequestMethod parseMethodFromString(String str) throws ZLHttpRequestMethodException {
 		if (str.equalsIgnoreCase("GET"))
@@ -20,5 +26,9 @@ public enum ZLHttpRequestMethod {
 			return DELETE;
 		else
 			throw new ZLHttpRequestMethodException();
+	}
+	
+	public String getMethodText() {
+		return methodText;
 	}
 }

@@ -1,55 +1,54 @@
 package com.zhat.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.zhat.abstracts.AZLHttpServlet;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zhat.abstracts.ZLHttpServlet;
 import com.zhat.constants.HttpConstants;
 import com.zhat.http.ZLHttpContentType;
-import com.zhat.http.ZLHttpRequest;
-import com.zhat.http.exceptions.MapKeyNotExistException;
-import com.zhat.http.exceptions.ZLHttpRequestContentException;
-import com.zhat.http.exceptions.ZLHttpRequestException;
-import com.zhat.http.exceptions.ZLHttpRequestMethodException;
-import com.zhat.http.response.ZLHttpServletResponse;
+import com.zhat.http.ZLHttpServletRequest;
 import com.zhat.model.Friend;
-import com.zhat.server.exceptions.ServerInternalException;
+import com.zhat.model.User;
 import com.zhat.utils.JSONUtils;
 
-public class getallfriends extends AZLHttpServlet {
+public class getallfriends extends ZLHttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6120586465036465259L;
+
 	@Override
-	protected void doGet(ZLHttpRequest request, ZLHttpServletResponse response) 
-			throws ZLHttpRequestException, ServerInternalException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		try {
-			int userId = Integer.parseInt(request.getParam(HttpConstants.PARAM_USER_ID));
+			int userId = Integer.parseInt(
+					((ZLHttpServletRequest)request).getParameter(HttpConstants.PARAM_USER_ID));
 			List<Friend> friends = Friend.getAllFriends(userId);
 			
-			String responseJsonText = null;
-			if (friends != null)
-				responseJsonText = new Gson().toJson(friends);
-			else
-				responseJsonText = JSONUtils.EMPTY_JSON_TEXT;
+			List<User> friendsInfo = new ArrayList<User>();
+			for (Friend friend : friends)
+				friendsInfo.add(User.getUserById(friend.getId()));
 			
-			response.setContentType(ZLHttpContentType.APPLICATION_JSON);
+			String responseJsonText = JSONUtils.toJSONObjectText(friendsInfo);
+			
+			response.setContentType(ZLHttpContentType.APPLICATION_JSON.getContentTypeText());
 			response.getWriter().println(responseJsonText);
 			response.getWriter().close();
 		}
-		catch (IOException e) {
-			throw new ServerInternalException();
-		}
 		catch (NumberFormatException e) {
-			throw new ZLHttpRequestContentException("Wrong user_id format.");
-		}
-		catch (MapKeyNotExistException e) {
-			throw new ZLHttpRequestContentException();
+			throw new ServletException("Wrong user_id format.");
 		}
 	}
 	
 	@Override
-	protected void doPost(ZLHttpRequest request, ZLHttpServletResponse response) 
-			throws ZLHttpRequestException {
-		throw new ZLHttpRequestMethodException();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException {
+		throw new ServletException("POST method is not supported.");
 	}
 }

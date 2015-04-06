@@ -59,6 +59,20 @@ public class User {
     	session.close();
 	}
 	
+	public static User getUserById(int id) {
+		Session session = MySQLSessionFactory.openSession();
+    	session.beginTransaction();
+    	
+    	Criteria criteria = session.createCriteria(User.class);
+    	User result = (User) criteria.add(Restrictions.eq("id", id)).uniqueResult();
+    	
+    	session.getTransaction().commit();
+    	session.flush();
+    	session.close();
+    	
+    	return result;
+	}
+	
 	public static User getUserByEmail(String email) {
 		Session session = MySQLSessionFactory.openSession();
     	session.beginTransaction();

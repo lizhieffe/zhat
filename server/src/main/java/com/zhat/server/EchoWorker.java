@@ -4,8 +4,8 @@ import java.nio.channels.SocketChannel;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.zhat.http.ZLHttpRequest;
-import com.zhat.http.ZLHttpRequestFactory;
+import com.zhat.http.ZLHttpServletRequest;
+import com.zhat.http.ZLHttpServletRequestFactory;
 
 public class EchoWorker implements Runnable {
 	private List<ServerDataEvent> queue = new LinkedList<ServerDataEvent>();
@@ -38,7 +38,8 @@ public class EchoWorker implements Runnable {
 				dataEvent = queue.remove(0);
 				
 				try {
-					ZLHttpRequest request = ZLHttpRequestFactory.createHttpRequestByParsingInput(dataEvent.getData());
+					ZLHttpServletRequest request = ZLHttpServletRequestFactory
+							.createHttpRequestByParsingInput(dataEvent.getData());
 					
 					// Return to sender
 					dataEvent.getServer().send(dataEvent.getSocket(), request.toString().getBytes());

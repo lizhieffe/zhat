@@ -5,11 +5,12 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-import com.zhat.http.ZLHttpRequest;
-import com.zhat.http.ZLHttpRequestFactory;
+import javax.servlet.http.HttpServlet;
+
+import com.zhat.http.ZLHttpServletRequest;
+import com.zhat.http.ZLHttpServletRequestFactory;
 import com.zhat.http.response.ZLHttpServletResponse;
 import com.zhat.interfaces.IChannelProcessor;
-import com.zhat.interfaces.IZLHttpServlet;
 
 public class ChannelReadProcessor implements IChannelProcessor {
 	
@@ -51,20 +52,20 @@ public class ChannelReadProcessor implements IChannelProcessor {
 			return;
 		}
 
-		ZLHttpRequest request = null;
+		ZLHttpServletRequest request = null;
 		ZLHttpServletResponse response = null;
 		try {
-			request = ZLHttpRequestFactory.createHttpRequestByParsingInput(this.readBuffer.array());
+			request = ZLHttpServletRequestFactory.createHttpRequestByParsingInput(this.readBuffer.array());
 			response = new ZLHttpServletResponse();
 			
-			String URI = request.getURI();
+			String URI = request.getRequestURI();
 			String servletName = URI.substring(URI.lastIndexOf('/') + 1);
 			
 			String packageName = this.getClass().getCanonicalName().substring(0, this.getClass().getCanonicalName().lastIndexOf('.'));
 			packageName = packageName.substring(0, packageName.lastIndexOf('.') + 1);
 			
 			String className = packageName + "servlets." + servletName;
-			IZLHttpServlet servlet = (IZLHttpServlet) Class.forName(className).newInstance();
+			HttpServlet servlet = (HttpServlet) Class.forName(className).newInstance();
 			
 			servlet.service(request, response);
 			server.send(socketChannel, response.toByteArray());

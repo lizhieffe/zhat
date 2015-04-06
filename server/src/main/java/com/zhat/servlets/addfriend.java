@@ -2,32 +2,36 @@ package com.zhat.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.zhat.abstracts.AZLHttpServlet;
+import com.zhat.abstracts.ZLHttpServlet;
 import com.zhat.constants.HttpConstants;
-import com.zhat.http.ZLHttpRequest;
-import com.zhat.http.exceptions.ZLHttpRequestContentException;
-import com.zhat.http.exceptions.ZLHttpRequestException;
-import com.zhat.http.exceptions.ZLHttpRequestMethodException;
-import com.zhat.http.response.ZLHttpServletResponse;
+import com.zhat.http.ZLHttpServletRequest;
 import com.zhat.model.Friend;
-import com.zhat.server.exceptions.ServerInternalException;
 
-public class addfriend extends AZLHttpServlet {
+public class addfriend extends ZLHttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 906085321395907739L;
+
 	@Override
-	protected void doGet(ZLHttpRequest request, ZLHttpServletResponse response) 
-			throws ZLHttpRequestException {
-		throw new ZLHttpRequestMethodException();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException {
+		throw new ServletException("Get method is not supported.");
 	}
 	
 	@Override
-	protected void doPost(ZLHttpRequest request, ZLHttpServletResponse response) 
-			throws ZLHttpRequestException, ServerInternalException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		try {
-			JSONObject json = request.getJsonData();
+			JSONObject json = ((ZLHttpServletRequest) request).getJsonData();
 			int userId = json.getInt(HttpConstants.PARAM_USER_ID);
 			int friendId = json.getInt(HttpConstants.PARAM_FRIEND_USER_ID);
 			Friend.addFriend(userId, friendId);
@@ -35,10 +39,7 @@ public class addfriend extends AZLHttpServlet {
 			response.getWriter().close();
 		}
 		catch (JSONException e) {
-			throw new ZLHttpRequestContentException("Wrong request parameter.");
-		}
-		catch (IOException e) {
-			throw new ServerInternalException();
+			throw new ServletException("Wrong request parameter.");
 		}
 	}
 }
