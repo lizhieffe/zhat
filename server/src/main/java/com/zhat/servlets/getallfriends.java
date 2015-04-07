@@ -3,9 +3,14 @@ package com.zhat.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.AsyncContext;
+import javax.servlet.AsyncEvent;
+import javax.servlet.AsyncListener;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.zhat.abstracts.ZLHttpServlet;
 import com.zhat.constants.ServletConstants;
 import com.zhat.http.ZLHttpContentType;
@@ -47,7 +52,38 @@ public class getallfriends extends ZLHttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		AsyncContext asyncCtx = request.startAsync();
+		AsyncContext asyncCtx = request.startAsync(request, response);
+		asyncCtx.addListener(new AsyncListener() {
+			
+			@Override
+			public void onComplete(AsyncEvent event) throws IOException {
+				
+			}
+
+			@Override
+			public void onTimeout(AsyncEvent event) throws IOException {
+				
+			}
+
+			@Override
+			public void onError(AsyncEvent event) throws IOException {
+			
+			}
+
+			@Override
+			public void onStartAsync(AsyncEvent event) throws IOException {
+
+			}
+		});
+		asyncCtx.start(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 		
 		

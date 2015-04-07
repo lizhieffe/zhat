@@ -2,6 +2,8 @@ package com.zhat;
 
 import java.io.IOException;
 
+import com.zhat.concurrency.AsyncTaskDispatcher;
+import com.zhat.concurrency.ThreadPool;
 import com.zhat.server.EchoWorker;
 import com.zhat.server.Server;
 import com.zhat.utils.AppProperties;
@@ -16,6 +18,8 @@ public class Application {
      */
     public static void main(String[] args) throws IOException {
  
+    	AsyncTaskDispatcher.init(ThreadPool.getInstance().getExecutorService());
+    	
     	try {
     		int PORT = Integer.parseInt(AppProperties.get("server.port"));
     		
@@ -33,6 +37,5 @@ public class Application {
     	
     	
     	
-    	System.out.println("Test Hibernate");
     }
 }
