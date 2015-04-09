@@ -301,7 +301,7 @@ public class ZLHttpServletResponse implements HttpServletResponse {
 	}
 	
 	public String toString() {
-		return null;
+		return super.toString();
 	}
 	
 	public InputStream toInputStream() {

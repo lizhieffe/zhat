@@ -21,14 +21,14 @@ import com.zhat.http.response.ZLHttpServletResponse;
 
 public class ZLAsyncContext implements AsyncContext {
 
-	private ZLHttpServletRequest request;
-	private ZLHttpServletResponse response;
+	private ServletRequest request;
+	private ServletResponse response;
 	private long timeout = 10000;	// Default timeout = 10000 ms.
 	Set<AsyncListener> listeners = new HashSet<AsyncListener>();
 	
-	ZLAsyncContext(ZLHttpServletRequest request, ZLHttpServletResponse response) {
-		this.request = request;
-		this.response = response;
+	public ZLAsyncContext(ServletRequest servletRequest, ServletResponse servletResponse) {
+		this.request = servletRequest;
+		this.response = servletResponse;
 	}
 	
 	@Override
@@ -67,7 +67,9 @@ public class ZLAsyncContext implements AsyncContext {
 
 	@Override
 	public void complete() {
-		
+		ZLHttpServletRequest request = (ZLHttpServletRequest)getRequest();
+		ZLHttpServletResponse response = (ZLHttpServletResponse)getResponse();
+		request.getServer().send(request.getSocketChannel(), response.toByteArray());
 	}
 
 	@Override

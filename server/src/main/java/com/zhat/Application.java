@@ -17,9 +17,7 @@ public class Application {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
- 
-    	AsyncTaskDispatcher.init(ThreadPool.getInstance().getExecutorService());
-    	
+     	
     	try {
     		int PORT = Integer.parseInt(AppProperties.get("server.port"));
     		
@@ -35,7 +33,8 @@ public class Application {
     		e.printStackTrace();
     	}
     	
-    	
+    	AsyncTaskDispatcher.init(ThreadPool.getInstance().getExecutorService());
+    	new Thread(AsyncTaskDispatcher.getInstance()).start();
     	
     }
 }

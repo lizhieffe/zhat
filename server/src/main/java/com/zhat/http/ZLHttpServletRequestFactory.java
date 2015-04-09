@@ -1,21 +1,24 @@
 package com.zhat.http;
 
 import java.io.IOException;
+import java.nio.channels.SocketChannel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.zhat.http.exceptions.ZLHttpRequestContentTypeException;
 import com.zhat.http.exceptions.ZLHttpRequestMethodException;
+import com.zhat.server.Server;
 import com.zhat.utils.StringUtils;
 
 public class ZLHttpServletRequestFactory {
 
-	public static ZLHttpServletRequest createHttpRequestByParsingInput(byte[] content) 
+	public static ZLHttpServletRequest createHttpRequestByParsingInput(
+			byte[] content, Server server, SocketChannel socketChannel) 
 			throws IOException, ZLHttpRequestMethodException, ZLHttpRequestContentTypeException {
 		boolean finishedReadingHeader = false;
 		String[] lines = StringUtils.readLines(content);
-		ZLHttpServletRequest request = new ZLHttpServletRequest();
+		ZLHttpServletRequest request = new ZLHttpServletRequest(server, socketChannel);
 		
 		for (int i = 0; i < lines.length; ++i) {
 			

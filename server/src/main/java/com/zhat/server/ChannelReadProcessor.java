@@ -5,12 +5,12 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-import javax.servlet.http.HttpServlet;
-
+import com.zhat.abstracts.ZLHttpServlet;
 import com.zhat.http.ZLHttpServletRequest;
 import com.zhat.http.ZLHttpServletRequestFactory;
 import com.zhat.http.response.ZLHttpServletResponse;
 import com.zhat.interfaces.IChannelProcessor;
+import com.zhat.servlet.ZLHttpServletHelper;
 
 public class ChannelReadProcessor implements IChannelProcessor {
 	
@@ -55,7 +55,8 @@ public class ChannelReadProcessor implements IChannelProcessor {
 		ZLHttpServletRequest request = null;
 		ZLHttpServletResponse response = null;
 		try {
-			request = ZLHttpServletRequestFactory.createHttpRequestByParsingInput(this.readBuffer.array());
+			request = ZLHttpServletRequestFactory
+					.createHttpRequestByParsingInput(this.readBuffer.array(), server, socketChannel);
 			response = new ZLHttpServletResponse();
 			
 			String URI = request.getRequestURI();
@@ -65,10 +66,20 @@ public class ChannelReadProcessor implements IChannelProcessor {
 			packageName = packageName.substring(0, packageName.lastIndexOf('.') + 1);
 			
 			String className = packageName + "servlets." + servletName;
-			HttpServlet servlet = (HttpServlet) Class.forName(className).newInstance();
+			try {
+				ZLHttpServlet servlet = (ZLHttpServlet) Class.forName(className).newInstance();
+				servlet.setServer(server);
+				servlet.setSocketChannel(socketChannel);
+				
+				servlet.service(request, response);
+			}
+			catch (ClassNotFoundException e) {
+				ZLHttpServletHelper.doGetException(request, response
+						, new Exception("Servlet " + className + " not found."));
+				server.send(socketChannel, ((ZLHttpServletResponse)response).toByteArray());
+			}
 			
-			servlet.service(request, response);
-			server.send(socketChannel, response.toByteArray());
+			
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

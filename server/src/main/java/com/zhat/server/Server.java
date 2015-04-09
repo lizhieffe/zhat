@@ -44,7 +44,6 @@ public class Server implements Runnable {
 		this.hostAddress = hostAddress;
 		this.port = port;
 		this.selector = this.initSelector();
-//		this.worker = worker;
 		
 		this.servletReadProcessor = new ChannelReadProcessor(this);
 		this.servletWriteProcessor = new ChannelWriteProcessor(this);

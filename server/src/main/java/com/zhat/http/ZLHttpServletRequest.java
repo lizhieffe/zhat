@@ -3,6 +3,7 @@ package com.zhat.http;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.channels.SocketChannel;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -29,14 +30,26 @@ import javax.servlet.http.Part;
 
 import org.json.JSONObject;
 
+import com.zhat.server.Server;
+import com.zhat.servlet.ZLAsyncContext;
+
 public class ZLHttpServletRequest implements HttpServletRequest {
 	
 	private ZLHttpRequestMethod method;
 	private String URI;
+	private boolean isAsyncStarted;
 	private Map<String, String> params = new HashMap<String, String>();
 	private Map<String, String> headers = new HashMap<String, String>();
 	private ZLHttpContentType contentType;
 	private JSONObject jsonData;
+	
+	private final Server server;
+	private final SocketChannel socketChannel;
+	
+	ZLHttpServletRequest(Server server, SocketChannel socketChannel) {
+		this.server = server;
+		this.socketChannel = socketChannel;
+	}
 	
 	public void setContentType(ZLHttpContentType contentType) {
 		this.contentType = contentType;
@@ -438,22 +451,20 @@ public class ZLHttpServletRequest implements HttpServletRequest {
 	}
 
 	@Override
-	public AsyncContext startAsync(ServletRequest servletRequest,
+	public ZLAsyncContext startAsync(ServletRequest servletRequest,
 			ServletResponse servletResponse) throws IllegalStateException {
-		// TODO Auto-generated method stub
-		return null;
+		isAsyncStarted = true;
+		return new ZLAsyncContext(servletRequest, servletResponse);
 	}
 
 	@Override
 	public boolean isAsyncStarted() {
-		// TODO Auto-generated method stub
-		return false;
+		return isAsyncStarted;
 	}
 
 	@Override
 	public boolean isAsyncSupported() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -510,5 +521,13 @@ public class ZLHttpServletRequest implements HttpServletRequest {
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Server getServer() {
+		return server;
+	}
+
+	public SocketChannel getSocketChannel() {
+		return socketChannel;
 	}
 }

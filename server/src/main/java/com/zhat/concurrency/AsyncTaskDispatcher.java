@@ -3,12 +3,12 @@ package com.zhat.concurrency;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class AsyncTaskDispatcher implements Runnable {
 	
@@ -22,7 +22,7 @@ public class AsyncTaskDispatcher implements Runnable {
 	}
 	
 	synchronized public static void init(ExecutorService executorService) {
-		if (instance != null)
+		if (instance == null)
 			instance = new AsyncTaskDispatcher(executorService);
 	}
 	
@@ -33,10 +33,12 @@ public class AsyncTaskDispatcher implements Runnable {
 	@Override
 	public void run() {
 		try {
-			while (true) {
-				while (tasks.size() == 0)
-					wait();
-				handleTask(tasks.poll());
+			synchronized(this) {
+				while (true) {
+					while (tasks.size() == 0)
+						wait();
+					handleTask(tasks.poll());
+				}
 			}
 		}
 		catch (InterruptedException e) {
@@ -58,34 +60,43 @@ public class AsyncTaskDispatcher implements Runnable {
 	public void dispatch(Runnable run, List<AsyncTaskListener> listeners, long timeout) {
 		AsyncTask task = new AsyncTask(run, listeners, timeout);
 		tasks.add(task);
+		synchronized(this) {
+			notifyAll();
+		}
 	}
 	
-	private void handleTask(AsyncTask task) {
-		Boolean result = true;
-		FutureTask<Boolean> futureTask = new FutureTask<Boolean>(task.getRun(), result);
-		executorService.execute(futureTask);
-		
+	private void handleTask(final AsyncTask task) {
 		try {
-			futureTask.get(task.getTimeout(), TimeUnit.MILLISECONDS);
+			Boolean result = true;
+			FutureTask<Boolean> futureTask = new FutureTask<Boolean>(task.getRun(), result) {
+				
+				@Override
+				public void done() {
+					for (AsyncTaskListener listener : task.getListeners())
+						if (listener != null)
+							listener.onComplete();
+				}
+			};
+			
+			final Future<?> future = executorService.submit(futureTask);
 			for (AsyncTaskListener listener : task.getListeners())
 				if (listener != null)
 					listener.onStartAsync();
-		} catch (InterruptedException e) {
-			for (AsyncTaskListener listener : task.getListeners())
-				if (listener != null)
-					listener.onError();
-		} catch (ExecutionException e) {
-			for (AsyncTaskListener listener : task.getListeners())
-				if (listener != null)
-					listener.onError();
-		} catch (TimeoutException e) {
-			for (AsyncTaskListener listener : task.getListeners())
-				if (listener != null)
-					listener.onTimeout();
+			
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+	
+				@Override
+				public void run() {
+					future.cancel(true);
+				}
+				
+			}, task.getTimeout());
 		}
-		
-		for (AsyncTaskListener listener : task.getListeners())
-			if (listener != null)
-				listener.onComplete();
+		catch (Exception e) {
+			for (AsyncTaskListener listener : task.getListeners())
+				if (listener != null)
+					listener.onError();
+		}
 	}
 }
