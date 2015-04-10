@@ -37,6 +37,8 @@ public class adduser extends ZLHttpServlet {
 			String lastName = json.getString(ServletConstants.PARAM_LAST_NAME);
 			String sex = json.getString(ServletConstants.PARAM_SEX);
 			String email = json.getString(ServletConstants.PARAM_EMAIL);
+			if (User.getUserByEmail(email) != null)
+				throw new ServletException("Email already exists.");
 			User.addUser(firstName, lastName, sex, email);
 			response.getWriter().println(ServletConstants.RESPONSE_SUCCESS_MSG);
 			response.getWriter().close();

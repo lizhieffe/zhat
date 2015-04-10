@@ -40,7 +40,7 @@ public class Server implements Runnable {
 		return pendingData;
 	}
 
-	public Server(InetAddress hostAddress, int port, EchoWorker worker) throws IOException {
+	public Server(InetAddress hostAddress, int port) throws IOException {
 		this.hostAddress = hostAddress;
 		this.port = port;
 		this.selector = this.initSelector();
@@ -69,6 +69,7 @@ public class Server implements Runnable {
 		this.selector.wakeup();
 	}
 
+	@Override
 	public void run() {
 		System.out.println("Server is running!");
 		
@@ -122,7 +123,6 @@ public class Server implements Runnable {
 
 		// Accept the connection and make it non-blocking
 		SocketChannel socketChannel = serverSocketChannel.accept();
-//		Socket socket = socketChannel.socket();
 		socketChannel.configureBlocking(false);
 
 		// Register the new SocketChannel with our Selector, indicating

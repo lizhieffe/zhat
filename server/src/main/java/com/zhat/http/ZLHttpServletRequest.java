@@ -49,6 +49,7 @@ public class ZLHttpServletRequest implements HttpServletRequest {
 	ZLHttpServletRequest(Server server, SocketChannel socketChannel) {
 		this.server = server;
 		this.socketChannel = socketChannel;
+		this.contentType = ZLHttpContentType.APPLICATION_TEXT_PLAIN;
 	}
 	
 	public void setContentType(ZLHttpContentType contentType) {
@@ -115,6 +116,7 @@ public class ZLHttpServletRequest implements HttpServletRequest {
 		return null;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Enumeration getAttributeNames() {
 		// TODO Auto-generated method stub

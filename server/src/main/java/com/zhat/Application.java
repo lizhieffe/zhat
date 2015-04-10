@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.zhat.concurrency.AsyncTaskDispatcher;
 import com.zhat.concurrency.ThreadPool;
-import com.zhat.server.EchoWorker;
 import com.zhat.server.Server;
 import com.zhat.utils.AppProperties;
 
@@ -21,9 +20,7 @@ public class Application {
     	try {
     		int PORT = Integer.parseInt(AppProperties.get("server.port"));
     		
-    		EchoWorker worker = new EchoWorker();
-    		new Thread(worker).start();
-    		new Thread(new Server(null, PORT, worker)).start();
+    		new Thread(new Server(null, PORT)).start();
     	}
     	catch (IOException e) {
     		e.printStackTrace();

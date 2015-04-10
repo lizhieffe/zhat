@@ -30,8 +30,8 @@ public class ZLHttpServletRequestFactory {
 				for (int j = i; j < lines.length; ++j)
 					builder.append(lines[j]);
 				
-				if (request.getContentType()
-						.equalsIgnoreCase(ZLHttpContentType.APPLICATION_JSON.getContentTypeText())) {
+				if (request.getContentType() != null && 
+						request.getContentType().equalsIgnoreCase(ZLHttpContentType.APPLICATION_JSON.getContentTypeText())) {
 					try {
 						request.setJsonData(new JSONObject(builder.toString()));
 					}
@@ -76,7 +76,7 @@ public class ZLHttpServletRequestFactory {
 			else {
 				String[] parts = lines[i].split(":", 2);
 				if (parts[0].trim().equalsIgnoreCase("Content-Type"))
-					request.setHttpRequestContentType(ZLHttpContentType.parseContentTypeFromString(parts[1].trim()));
+					request.setHttpRequestContentType(ZLHttpContentType.parseContentTypeFromString(parts[1].trim().split(";")[0]));
 				else
 					request.getHeaders().put(parts[0].trim(), parts[1].trim());
 			}

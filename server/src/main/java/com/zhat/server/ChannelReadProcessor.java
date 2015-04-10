@@ -78,8 +78,6 @@ public class ChannelReadProcessor implements IChannelProcessor {
 						, new Exception("Servlet " + className + " not found."));
 				server.send(socketChannel, ((ZLHttpServletResponse)response).toByteArray());
 			}
-			
-			
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
