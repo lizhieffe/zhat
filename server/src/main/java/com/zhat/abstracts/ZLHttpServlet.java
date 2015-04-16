@@ -55,9 +55,4 @@ public abstract class ZLHttpServlet extends HttpServlet {
 				server.send(socketChannel, ((ZLHttpServletResponse)response).toByteArray());
 		}
 	}
-	
-//	protected abstract void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException;
-//	protected abstract void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException;
 }

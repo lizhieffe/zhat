@@ -62,11 +62,16 @@ public class getallfriends extends ZLHttpServlet {
 				try {
 					int userId = Integer.parseInt(
 							((ZLHttpServletRequest)request).getParameter(ServletConstants.PARAM_USER_ID));
-					List<Friend> friends = Friend.getAllFriends(userId);
+					List<Friend> friends = Friend.getAllFriendsInCache(userId);
+					
+					if (friends == null) {
+						friends = Friend.getAllFriendsInDB(userId);
+						Friend.setAllFriendsInCache(userId, friends);
+					}
 					
 					List<User> friendsInfo = new ArrayList<User>();
 					for (Friend friend : friends)
-						friendsInfo.add(User.getUserById(friend.getId()));
+						friendsInfo.add(User.getUserById(friend.getFriendUserId()));
 					
 					String responseJsonText = JSONUtils.toJSONObjectText(friendsInfo);
 					
